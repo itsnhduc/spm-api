@@ -26,12 +26,14 @@ exports.createPkg = (req, res) => {
 }
 
 exports.updatePkg = (req, res) => {
-  Pkgs.findOneAndUpdate({...req.query}, req.body, {new: true}, (err, pkg) => handler(err, res, pkg))
+  const pkgId = req.params.id
+  Pkgs.update({_id: pkgId}, req.body, (err, pkg) => handler(err, res, pkg))
 }
 
-exports.deletePkg = (req, res) => {
-  Pkgs.remove({...req.query}, (err, pkg) => handler(err, res, { message: `Package successfully deleted` }))
-}
+// exports.deletePkg = (req, res) => {
+//   const pkgId = req.params.id
+//   Pkgs.remove({_id: pkgId}, (err, pkg) => handler(err, res, { message: `Package successfully deleted` }))
+// }
 
 exports.createCommit = (req, res) => {
   const newCommit = new PkgCommits(req.body)

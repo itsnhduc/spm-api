@@ -7,10 +7,10 @@ export default (app) => {
   app.route(baseUrl + moduleUrl)
     .get(ctrlr.listPkg)
     .post(ctrlr.createPkg)
-    .put(ctrlr.updatePkg)
-    .delete(ctrlr.deletePkg)
   app.route(baseUrl + moduleUrl + '/:id')
     .get(ctrlr.readPkg)
+    .put(ctrlr.updatePkg)
+    // .delete(ctrlr.deletePkg)
   app.route(baseUrl + moduleUrl + '/:id/commits')
     .post(ctrlr.createCommit)
 }

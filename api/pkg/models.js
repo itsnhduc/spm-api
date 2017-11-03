@@ -13,7 +13,7 @@ const PkgSchema = new Schema({
   clone_url: {type: String, required: true},
   tarball_url: {type: String, required: true},
   install_count: {type: Number, default: 0},
-  download_count: {type: String, default: 0}
+  download_count: {type: Number, default: 0}
 })
 
 export default mongoose.model('Pkgs', PkgSchema)
