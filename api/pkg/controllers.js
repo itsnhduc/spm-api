@@ -12,7 +12,10 @@ const handler = (err, res, resJson) => {
 }
 
 exports.listPkg = (req, res) => {
-  Pkgs.find({...req.query}, (err, pkg) => handler(err, res, pkg))
+  const limit = parseInt(req.query.limit) || 0
+  const query = {...req.query}
+  delete query.limit
+  Pkgs.find(query, (err, pkg) => handler(err, res, pkg)).limit(limit)
 }
 
 exports.readPkg = (req, res) => {
