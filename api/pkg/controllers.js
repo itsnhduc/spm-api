@@ -12,10 +12,18 @@ const handler = (err, res, resJson) => {
 }
 
 exports.listPkg = (req, res) => {
+  // parse limit
   const limit = parseInt(req.query.limit) || 0
+  // parse order
+  const orderBy = req.query.order
+  const orderType = req.query.order_type == 'desc' ? -1 : 1
+  // rectify query
   const query = {...req.query}
   delete query.limit
-  Pkgs.find(query, (err, pkg) => handler(err, res, pkg)).limit(limit)
+  delete query.order
+  delete query.order_type
+  // execute find
+  Pkgs.find(query, (err, pkg) => handler(err, res, pkg)).limit(limit).sort({[orderBy]: orderType})
 }
 
 exports.readPkg = (req, res) => {
