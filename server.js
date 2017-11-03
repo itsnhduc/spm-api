@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
+import cors from 'cors'
 
 import Pkgs from './api/pkg/models'
 import routes from './api/pkg/routes'
@@ -14,6 +15,9 @@ connectDB()
 
 // HTTP reqs logger
 app.use(morgan('dev'))
+
+// Allow CORS
+app.use(cors())
 
 // JSON Parser for reqs
 app.use(bodyParser.urlencoded({extended: true}))
