@@ -12,16 +12,20 @@ const handler = (err, res, resJson) => {
 }
 
 exports.listPkg = (req, res) => {
+  // clone
+  const query = {...req.query}
   // parse limit
   const limit = parseInt(req.query.limit) || 0
+  delete query.limit
   // parse order
   const orderBy = req.query.order
   const orderType = req.query.order_type == 'desc' ? -1 : 1
-  // rectify query
-  const query = {...req.query}
-  delete query.limit
   delete query.order
   delete query.order_type
+  // parse regex name search
+  const searchName = req.query.name_regex
+  if (searchName) query.name = { $regex: '^spm-pkg-' + searchName }
+  delete query.name_regex
   // execute find
   Pkgs.find(query, (err, pkg) => handler(err, res, pkg)).limit(limit).sort({[orderBy]: orderType})
 }
