@@ -8,6 +8,7 @@ const PkgSchema = new Schema({
   created_date: {type: Date, default: Date.now},
   author: {type: String, required: true},
   description: {type: String, required: false},
+  language: {type: String, required: true},
   commits: {type: [PkgCommitSchema], default: []},
   docs_url: {type: String, required: true},
   clone_url: {type: String, required: true},
