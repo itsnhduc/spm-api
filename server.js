@@ -30,3 +30,6 @@ routes(app)
 app.listen(port, () => {
   console.log(`RESTful API server started on port ${port}`)
 })
+
+// Serve explorer
+app.use(express.static('public/explorer'))
