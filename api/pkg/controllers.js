@@ -60,3 +60,8 @@ exports.createCommit = (req, res) => {
     }
   }}, (err, pkg) => handler(err, res, pkg))
 }
+
+exports.getPkgAttr = (req, res) => {
+  const attr = req.params.attr
+  Pkgs.distinct(attr, (err, arr) => handler(err, res, arr))
+}

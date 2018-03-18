@@ -13,4 +13,6 @@ export default (app) => {
     // .delete(ctrlr.deletePkg)
   app.route(baseUrl + moduleUrl + '/:id/commits')
     .post(ctrlr.createCommit)
+  app.route(baseUrl + moduleUrl + '/attr/:attr')
+    .get(ctrlr.getPkgAttr)
 }
